@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="OMGMarbles">
+  <link rel="manifest" href="manifest.json">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/OMGMarbles-120x120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/OMGMarbles-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/OMGMarbles-180x180.png">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <title>Svala WebAssembly</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-image: url('Default_ipad.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: black;
+    }
+    canvas {
+      display: block; /* Eliminates extra spacing below the canvas */
+      width: 100%;
+      height: 100%;
+      user-select: none;
+      touch-action: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      outline: none;
+    }
+    .ux-seg {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      align-self: flex-start;
+      gap: 2px;
+      padding: 2px;
+      border-radius: 8px;
+      box-sizing: border-box;
+      background: var(--seg-track-bg, rgba(118,118,128,0.24));
+      border: 1px solid var(--seg-track-border, rgba(118,118,128,0.24));
+    }
+    .ux-seg-btn {
+      all: unset;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      flex: 1 1 0;
+      min-width: 0;
+      height: 28px;
+      padding: 0 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                   Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji",
+                   "Segoe UI Emoji", "Segoe UI Symbol";
+      font-weight: 600;   /* medium */
+      font-size: 13px;
+      line-height: 20px;
+
+      color: var(--seg-tint, #0A84FF);
+    }
+    .ux-seg-btn.is-selected {
+      background: var(--seg-tint, #0A84FF);
+      color: white;
+    }
+    .ux-seg-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--seg-tint, #0A84FF) 40%, transparent);
+      border-radius: 7px;
+    }
+    .ux-seg-btn[disabled] { opacity: .4; cursor: default; }
+  </style>
+</head>
+<body>
+  <!--
+   Data‑attributes:
+     - data-width & data-height: fixed dimensions.
+     - data-aspect-ratio: e.g. "3:4" to maintain a ratio.
+     - data-device: can be "auto-fit" or a filter string.
+     - data-device-idiom: optional ("phone", "tablet", "tv", "watch", "desktop") to narrow selection.
+     - data-device-screen-diagonal: desired screen diagonal (in inches) to refine matching.
+     - data-orientation: optional override ("portrait" or "landscape").
+     - data-legacy-mode: if present, ignore normal auto-fit and choose a legacy preset.
+         • The legacy presets are:
+             - iPhone 5: 320×568 (portrait) or 568×320 (landscape), scale 2.
+             - iPad: 768×1024 (portrait) or 1024×768 (landscape), scale 2.
+     - data-min-width, data-min-height, data-max-width, data-max-height: clamping for final size.
+  -->
+  <canvas data-svala="wasm/OMGMarbles.wasm" data-hash="74ad215b5a8dc862" data-legacy-mode="true" data-device="Apple" tabindex="0" data-dir="data" data-onsen="load"></canvas>
+  <!-- <script src="//cdn.jsdelivr.net/npm/eruda"></script> -->
+  <!-- <script>eruda.init();</script> -->
+
+  <script type="module" id="svalascript" src="js/svala.js"></script>
+</body>
+</html>
